@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happiest Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            color: #fff;
+            background-color: #ff6699;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #ff3366;
+        }
+
+        .message {
+            font-size: 2em;
+            color: #ff3366;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .personal-message {
+            font-size: 1.5em;
+            color: #ff3366;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .party-message {
+            font-size: 1.2em;
+            color: #ff3366;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .calendar-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .firework {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffcc00, transparent);
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" id="revealButton">Press Me!</button>
+        
+        <div class="message" id="birthdayMessage">Happiest Birthday Nidhi! 🎉</div>
+        <p class="personal-message" id="personalMessage">Hope your day is as beautiful as you are! 💖</p>
+        <p class="party-message" id="partyMessage">Birthday ki Party kb dere ho fir 🙂?</p>
+        
+        <button class="button" id="redirectButton" style="display: none;">Select Date</button>
+        
+        <div class="fireworks" id="fireworksContainer">
+            <!-- Fireworks will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script>
+        // Show fireworks
+        function createFireworks() {
+            const container = document.getElementById('fireworksContainer');
+            for (let i = 0; i < 10; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = `${Math.random() * 100}vw`;
+                firework.style.top = `${Math.random() * 100}vh`;
+                firework.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                container.appendChild(firework);
+            }
+        }
+
+        document.getElementById('revealButton').addEventListener('click', function() {
+            // Show the birthday message
+            document.getElementById('birthdayMessage').style.opacity = 1;
+            document.getElementById('birthdayMessage').style.transform = 'scale(1)';
+            
+            // Show fireworks
+            createFireworks();
+            
+            // Reveal personal message and party message
+            setTimeout(function() {
+                document.getElementById('personalMessage').style.opacity = 1;
+                document.getElementById('partyMessage').style.opacity = 1;
+            }, 1000);
+
+            // Show redirect button
+            setTimeout(function() {
+                document.getElementById('redirectButton').style.display = 'inline-block';
+            }, 2000);
+
+            // Hide the reveal button
+            this.style.display = 'none';
+        });
+
+        // Handle redirection
+        document.getElementById('redirectButton').addEventListener('click', function() {
+            window.location.href = 'https://forms.gle/DVo4zhvxQRF5Y6Zn8';
+        });
+    </script>
+</body>
+</html>
